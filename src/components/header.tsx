@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 const Header = () => {
   return (
-    <header className="fixed left-0 top-0 z-10 flex h-16 w-full items-center justify-between border-b px-4 text-foreground md:gap-12 md:px-16 lg:px-24">
+    <header className="fixed left-0 top-0 z-10 flex h-16 w-full items-center justify-between border-b bg-background px-4 text-foreground md:gap-12 md:px-16 lg:px-24">
       <div className="flex items-center gap-4">
         <Sheet>
           <SheetTrigger>
