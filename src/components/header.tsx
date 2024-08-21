@@ -1,19 +1,40 @@
 import SearchBox from '@/components/search-box';
-import { Button } from '@/components/ui/button';
 import {
   MenuIcon,
   SearchIcon,
   ShoppingCartIcon,
   UserIcon,
 } from '@/components/shared/icons';
-import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Link from 'next/link';
 
 const Header = () => {
   return (
     <header className="fixed left-0 top-0 z-10 flex h-16 w-full items-center justify-between border-b px-4 text-foreground md:gap-12 md:px-16 lg:px-24">
       <div className="flex items-center gap-4">
-        <MenuIcon size={24} className="md:hidden" />
+        <Sheet>
+          <SheetTrigger>
+            <MenuIcon size={24} className="md:hidden" />
+            <span className="sr-only">Open Menu</span>
+          </SheetTrigger>
+          <SheetContent side={'left'}>
+            <nav className="mt-8">
+              <ul className="flex flex-col text-lg">
+                {['Home', 'Products', 'About', 'Contact'].map((item) => (
+                  <li
+                    key={item}
+                    className="w-full rounded text-muted-foreground duration-300 hover:bg-accent hover:text-foreground"
+                  >
+                    <Link href="/" className="block w-full p-2">
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </SheetContent>
+        </Sheet>
         <Link href="/" aria-label="Go to homepage">
           <div className="text-2xl font-bold">Logo</div>
         </Link>
