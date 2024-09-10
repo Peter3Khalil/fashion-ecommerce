@@ -24,6 +24,12 @@ You can change `Port` by modifying script on package.json file to be:
 }
 ```
 
+## Contributing
+Please run the following command before pushing your code:
+```bash
+npm run pre-commit
+```
+
 ## Building the project for production
 
 Run the following commands:
@@ -36,6 +42,7 @@ npm run build
 npm start
 ```
 ## Tech Stack
-- Next.js 14 (React 18) using `App` routing
+- Next.js
 - TypeScript
 - Tailwind
+- ShadcnUI
