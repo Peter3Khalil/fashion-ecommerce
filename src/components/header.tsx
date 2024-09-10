@@ -7,15 +7,26 @@ import {
 } from '@/components/shared/icons';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import React, { FC } from 'react';
 
-const Header = () => {
+const Header: FC<React.HTMLAttributes<HTMLDivElement>> = ({
+  className,
+  ...props
+}) => {
   return (
-    <header className="fixed left-0 top-0 z-10 flex h-16 w-full items-center justify-between border-b bg-background px-4 text-foreground md:gap-12 md:px-16 lg:px-24">
+    <header
+      className={cn(
+        'fixed left-0 top-0 z-10 flex h-16 w-full items-center justify-between border-b bg-background px-4 text-foreground md:gap-12 md:px-16 lg:px-24',
+        className,
+      )}
+      {...props}
+    >
       <div className="flex items-center gap-4">
         <Sheet>
-          <SheetTrigger>
-            <MenuIcon size={24} className="md:hidden" />
+          <SheetTrigger className="md:hidden">
+            <MenuIcon size={24} />
             <span className="sr-only">Open Menu</span>
           </SheetTrigger>
           <SheetContent side={'left'}>
