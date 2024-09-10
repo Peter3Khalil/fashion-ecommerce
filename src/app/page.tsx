@@ -95,6 +95,49 @@ const Home = () => {
             View All
           </Button>
         </section>
+        <hr className="m-5 border border-black opacity-10" />
+        <section className="flex flex-col items-center justify-center">
+          <center>
+            <h1 className="text-5xl font-bold">TOP SELLINGS</h1>
+          </center>
+          <div className="flex items-center gap-4 overflow-auto max-md:px-6 lg:justify-center">
+            {Array.from({ length: 4 }).map((d, f) => (
+              <Card key={f}>
+                <CardHeader>
+                  <CardTitle className="flex">
+                    <Image
+                      src="/images/hero.webp"
+                      alt="Hero Image"
+                      width={295}
+                      height={298}
+                      className="mx-auto h-auto w-full rounded-2xl object-contain md:w-auto"
+                    />
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-xl font-bold">Product name</div>
+                  {/* product name */}
+                </CardContent>
+                <CardFooter>
+                  <div className="">
+                    <div className="text-2xl font-bold">20$</div>
+                    <div className="flex">
+                      <StarIcon />
+                      20K
+                    </div>
+                  </div>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+          <Button
+            type="button"
+            variant={'outline'}
+            className="mt-10 w-56 rounded-full"
+          >
+            View All
+          </Button>
+        </section>
       </main>
 
       <footer></footer>
