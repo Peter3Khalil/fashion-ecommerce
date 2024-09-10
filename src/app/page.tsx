@@ -1,5 +1,13 @@
 import Header from '@/components/header';
+import { StarIcon } from '@/components/shared/icons';
 import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import Image from 'next/image';
 
 const Home = () => {
@@ -44,6 +52,48 @@ const Home = () => {
               />
             </div>
           </div>
+        </section>
+        <section className="flex flex-col items-center justify-center">
+          <center>
+            <h1 className="text-5xl font-bold">NEW ARRIVALS</h1>
+          </center>
+          <div className="flex items-center gap-4 overflow-auto max-md:px-6 lg:justify-center">
+            {Array.from({ length: 4 }).map((d, f) => (
+              <Card key={f}>
+                <CardHeader>
+                  <CardTitle className="flex">
+                    <Image
+                      src="/images/hero.webp"
+                      alt="Hero Image"
+                      width={295}
+                      height={298}
+                      className="mx-auto h-auto w-full rounded-2xl object-contain md:w-auto"
+                    />
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-xl font-bold">Product name</div>
+                  {/* product name */}
+                </CardContent>
+                <CardFooter>
+                  <div className="">
+                    <div className="text-2xl font-bold">20$</div>
+                    <div className="flex">
+                      <StarIcon />
+                      20K
+                    </div>
+                  </div>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+          <Button
+            type="button"
+            variant={'outline'}
+            className="mt-10 w-56 rounded-full"
+          >
+            View All
+          </Button>
         </section>
       </main>
 
