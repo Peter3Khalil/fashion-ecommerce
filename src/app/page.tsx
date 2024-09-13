@@ -1,3 +1,4 @@
+'use client';
 import Header from '@/components/header';
 import { StarIcon } from '@/components/shared/icons';
 import { Button } from '@/components/ui/button';
@@ -8,6 +9,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import Image from 'next/image';
 
 const Home = () => {
@@ -57,9 +65,9 @@ const Home = () => {
           <center>
             <h1 className="text-5xl font-bold">NEW ARRIVALS</h1>
           </center>
-          <div className="flex items-center gap-4 overflow-auto max-md:px-6 lg:justify-center">
+          <div className="flex grid-cols-2 gap-4 overflow-x-auto max-md:w-full md:grid-cols-4">
             {Array.from({ length: 4 }).map((d, f) => (
-              <Card key={f}>
+              <Card key={f} className="min-w-[250px]">
                 <CardHeader>
                   <CardTitle className="flex">
                     <Image
@@ -76,7 +84,7 @@ const Home = () => {
                   {/* product name */}
                 </CardContent>
                 <CardFooter>
-                  <div className="">
+                  <div>
                     <div className="text-2xl font-bold">20$</div>
                     <div className="flex">
                       <StarIcon />
@@ -87,6 +95,7 @@ const Home = () => {
               </Card>
             ))}
           </div>
+
           <Button
             type="button"
             variant={'outline'}
@@ -100,9 +109,9 @@ const Home = () => {
           <center>
             <h1 className="text-5xl font-bold">TOP SELLINGS</h1>
           </center>
-          <div className="flex items-center gap-4 overflow-auto max-md:px-6 lg:justify-center">
+          <div className="flex grid-cols-2 gap-4 overflow-x-auto max-md:w-full md:grid-cols-4">
             {Array.from({ length: 4 }).map((d, f) => (
-              <Card key={f}>
+              <Card key={f} className="min-w-[250px]">
                 <CardHeader>
                   <CardTitle className="flex">
                     <Image
@@ -119,7 +128,7 @@ const Home = () => {
                   {/* product name */}
                 </CardContent>
                 <CardFooter>
-                  <div className="">
+                  <div>
                     <div className="text-2xl font-bold">20$</div>
                     <div className="flex">
                       <StarIcon />
@@ -138,6 +147,37 @@ const Home = () => {
             View All
           </Button>
         </section>
+        <center>
+          <Carousel
+            opts={{
+              align: 'start',
+            }}
+            className="w-full"
+          >
+            <div className="flex items-center justify-between px-10">
+              <div className="text-4xl font-bold">OUR HAPPY CUSTOMERS</div>
+              <div className="flex gap-7">
+                <CarouselPrevious className="static" />
+                <CarouselNext className="static" />
+              </div>
+            </div>
+            <CarouselContent>
+              {Array.from({ length: 5 }).map((_, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div className="p-1">
+                    <Card>
+                      <CardContent className="flex aspect-square items-center justify-center p-6">
+                        <span className="text-3xl font-semibold">
+                          {index + 1}
+                        </span>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </center>
       </main>
 
       <footer></footer>

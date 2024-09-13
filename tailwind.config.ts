@@ -28,6 +28,9 @@ const config = {
       '9xl': '8rem',
     },
     extend: {
+      display: {
+        'webkit-box': '-webkit-box',
+      },
       fontSize: {
         sm: '0.875rem',
         md: '1rem',
