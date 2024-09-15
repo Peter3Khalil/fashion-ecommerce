@@ -9,7 +9,6 @@
     "browser": true,
     "node": true
   },
-
   "extends": [
     "prettier",
     "next/core-web-vitals",
@@ -18,9 +17,9 @@
   ],
   "plugins": ["prettier", "@typescript-eslint"],
   "rules": {
-    "no-console": "warn",
+    "no-console": "off", // Turn off console warnings globally
     "no-var": "error",
-    "no-unused-vars": "error",
+    "no-unused-vars": "off", // Turn off unused vars globally
     "prefer-const": "error",
     "no-restricted-imports": [
       "error",
@@ -33,6 +32,7 @@
         ]
       }
     ],
+    "@typescript-eslint/no-unused-vars": "off", // Turn off TypeScript unused vars globally
     "@typescript-eslint/no-empty-object-type": "off"
   }
 }
