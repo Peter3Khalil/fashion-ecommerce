@@ -1,6 +1,6 @@
 'use client';
 import Header from '@/components/header';
-import { StarIcon } from '@/components/shared/icons';
+import { MdVerified, StarIcon } from '@/components/shared/icons';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -16,13 +16,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import Stars from '@/components/ui/stars';
 import Image from 'next/image';
 
 const Home = () => {
   return (
     <div className="min-h-svh overflow-y-auto overflow-x-hidden pt-16">
       <Header />
-      <main>
+      <main className="w-full">
         <section className="flex flex-col items-center gap-4 bg-accent px-4 pt-6 md:px-16 md:pt-16 lg:flex-row lg:px-24">
           <div className="flex flex-1 flex-col items-start gap-4">
             <h1 className="text-5xl font-bold leading-[1] text-foreground lg:text-6xl">
@@ -147,37 +148,40 @@ const Home = () => {
             View All
           </Button>
         </section>
-        <center>
-          <Carousel
-            opts={{
-              align: 'start',
-            }}
-            className="w-full"
-          >
-            <div className="flex items-center justify-between px-10">
-              <div className="text-4xl font-bold">OUR HAPPY CUSTOMERS</div>
-              <div className="flex gap-7">
-                <CarouselPrevious className="static" />
-                <CarouselNext className="static" />
-              </div>
+        <Carousel>
+          <div className="flex flex-col items-center justify-between gap-4 px-4 md:flex-row md:px-10">
+            <div className="text-center text-2xl font-bold md:text-4xl">
+              OUR HAPPY CUSTOMERS
             </div>
-            <CarouselContent>
-              {Array.from({ length: 5 }).map((_, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <Card>
-                      <CardContent className="flex aspect-square items-center justify-center p-6">
-                        <span className="text-3xl font-semibold">
-                          {index + 1}
-                        </span>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </center>
+            <div className="flex gap-3 md:gap-7">
+              <CarouselPrevious className="static" />
+              <CarouselNext className="static" />
+            </div>
+          </div>
+          <CarouselContent>
+            {Array.from({ length: 5 }).map((_, index) => (
+              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                <div className="p-4">
+                  <Card className="w-full">
+                    <CardHeader>
+                      <Stars value={4.5} />
+                    </CardHeader>
+                    <CardContent className="flex items-center">
+                      <div className="text-lg font-bold">Dr. TONY</div>
+                      <MdVerified className="text-2xl text-green-700" />
+                    </CardContent>
+                    <CardHeader className="text-sm font-normal">
+                      "I'm blown away by the quality and style of the clothes I
+                      received from Shop.co. From casual wear to elegant
+                      dresses, every piece I've bought has exceeded my
+                      expectations.”
+                    </CardHeader>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </main>
 
       <footer></footer>
