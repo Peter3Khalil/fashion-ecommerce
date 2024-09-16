@@ -36,4 +36,6 @@ const Stars = React.forwardRef<
   );
 });
 
+Stars.displayName = 'Stars';
+
 export default Stars;

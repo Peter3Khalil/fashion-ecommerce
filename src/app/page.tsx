@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <div className="min-h-svh overflow-y-auto overflow-x-hidden pt-16">
       <Header />
-      <main className="w-full">
+      <main>
         <section className="flex flex-col items-center gap-4 bg-accent px-4 pt-6 md:px-16 md:pt-16 lg:flex-row lg:px-24">
           <div className="flex flex-1 flex-col items-start gap-4">
             <h1 className="text-5xl font-bold leading-[1] text-foreground lg:text-6xl">
@@ -64,9 +64,9 @@ const Home = () => {
         </section>
         <section className="flex flex-col items-center justify-center">
           <center>
-            <h1 className="text-5xl font-bold">NEW ARRIVALS</h1>
+            <h1 className="mb-14 mt-48 text-5xl font-bold">NEW ARRIVALS</h1>
           </center>
-          <div className="flex grid-cols-2 gap-4 overflow-x-auto max-md:w-full md:grid-cols-4">
+          <div className="flex grid-cols-2 gap-5 overflow-x-auto max-md:w-full md:grid-cols-4">
             {Array.from({ length: 4 }).map((d, f) => (
               <Card key={f} className="min-w-[250px]">
                 <CardHeader>
@@ -100,17 +100,17 @@ const Home = () => {
           <Button
             type="button"
             variant={'outline'}
-            className="mt-10 w-56 rounded-full"
+            className="mb-16 mt-10 w-56 rounded-full"
           >
             View All
           </Button>
         </section>
-        <hr className="m-5 border border-black opacity-10" />
+        <hr className="m-24 mb-16 border border-black opacity-10" />
         <section className="flex flex-col items-center justify-center">
           <center>
             <h1 className="text-5xl font-bold">TOP SELLINGS</h1>
           </center>
-          <div className="flex grid-cols-2 gap-4 overflow-x-auto max-md:w-full md:grid-cols-4">
+          <div className="flex grid-cols-2 gap-5 overflow-x-auto max-md:w-full md:grid-cols-4">
             {Array.from({ length: 4 }).map((d, f) => (
               <Card key={f} className="min-w-[250px]">
                 <CardHeader>
@@ -143,14 +143,14 @@ const Home = () => {
           <Button
             type="button"
             variant={'outline'}
-            className="mt-10 w-56 rounded-full"
+            className="mb-20 mt-10 w-56 rounded-full"
           >
             View All
           </Button>
         </section>
         <Carousel>
           <div className="flex flex-col items-center justify-between gap-4 px-4 md:flex-row md:px-10">
-            <div className="text-center text-2xl font-bold md:text-4xl">
+            <div className="mb-10 text-center text-2xl font-bold md:text-4xl">
               OUR HAPPY CUSTOMERS
             </div>
             <div className="flex gap-3 md:gap-7">
@@ -171,10 +171,10 @@ const Home = () => {
                       <MdVerified className="text-2xl text-green-700" />
                     </CardContent>
                     <CardHeader className="text-sm font-normal">
-                      "I'm blown away by the quality and style of the clothes I
+                      Im blown away by the quality and style of the clothes I
                       received from Shop.co. From casual wear to elegant
-                      dresses, every piece I've bought has exceeded my
-                      expectations.”
+                      dresses, every piece Ive bought has exceeded my
+                      expectations.
                     </CardHeader>
                   </Card>
                 </div>
