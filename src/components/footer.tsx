@@ -41,7 +41,7 @@ let Footer = React.forwardRef<
           <div className="text-start">
             <div className="text-3xl font-bold text-black">SHOP.CO</div>
             <div className="md:max-w-full lg:w-40">
-              We have clothes that suits your style and which you're proud to
+              We have clothes that suits your style and which you&apos;re proud to
               wear. From women to men.
             </div>
             <div className="flex gap-1">
