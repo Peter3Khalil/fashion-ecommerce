@@ -1,6 +1,8 @@
 'use client';
+import Footer from '@/components/footer';
 import Header from '@/components/header';
 import { MdVerified, StarIcon } from '@/components/shared/icons';
+import Stars from '@/components/stars';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -16,7 +18,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import Stars from '@/components/ui/stars';
 import Image from 'next/image';
 
 const Home = () => {
@@ -66,9 +67,12 @@ const Home = () => {
           <center>
             <h1 className="mb-14 mt-48 text-5xl font-bold">NEW ARRIVALS</h1>
           </center>
-          <div className="flex grid-cols-2 gap-5 overflow-x-auto max-md:w-full md:grid-cols-4">
+          <div className="flex w-full gap-5 overflow-x-auto px-4 max-lg:pl-4 lg:grid lg:grid-cols-4 lg:px-[100px]">
             {Array.from({ length: 4 }).map((d, f) => (
-              <Card key={f} className="min-w-[250px]">
+              <Card
+                key={f}
+                className="min-w-[250px] max-lg:flex-shrink-0 lg:w-auto"
+              >
                 <CardHeader>
                   <CardTitle className="flex">
                     <Image
@@ -82,7 +86,6 @@ const Home = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="text-xl font-bold">Product name</div>
-                  {/* product name */}
                 </CardContent>
                 <CardFooter>
                   <div>
@@ -110,9 +113,12 @@ const Home = () => {
           <center>
             <h1 className="text-5xl font-bold">TOP SELLINGS</h1>
           </center>
-          <div className="flex grid-cols-2 gap-5 overflow-x-auto max-md:w-full md:grid-cols-4">
+          <div className="flex w-full gap-5 overflow-x-auto px-4 max-lg:pl-4 lg:grid lg:grid-cols-4 lg:px-[100px]">
             {Array.from({ length: 4 }).map((d, f) => (
-              <Card key={f} className="min-w-[250px]">
+              <Card
+                key={f}
+                className="min-w-[250px] max-lg:flex-shrink-0 lg:w-auto"
+              >
                 <CardHeader>
                   <CardTitle className="flex">
                     <Image
@@ -126,7 +132,6 @@ const Home = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="text-xl font-bold">Product name</div>
-                  {/* product name */}
                 </CardContent>
                 <CardFooter>
                   <div>
@@ -140,6 +145,7 @@ const Home = () => {
               </Card>
             ))}
           </div>
+
           <Button
             type="button"
             variant={'outline'}
@@ -184,7 +190,9 @@ const Home = () => {
         </Carousel>
       </main>
 
-      <footer></footer>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };
