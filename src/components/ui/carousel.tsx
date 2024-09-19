@@ -16,7 +16,10 @@ type CarouselProps = {
   opts?: CarouselOptions;
   plugins?: CarouselPlugin;
   orientation?: 'horizontal' | 'vertical';
+<<<<<<< HEAD
   // eslint-disable-next-line no-unused-vars
+=======
+>>>>>>> origin/master
   setApi?: (api: CarouselApi) => void;
 };
 
@@ -204,6 +207,7 @@ const CarouselPrevious = React.forwardRef<
       ref={ref}
       variant={variant}
       size={size}
+<<<<<<< HEAD
       className={cn(
         'absolute h-8 w-8 rounded-full',
         orientation === 'horizontal'
@@ -211,6 +215,9 @@ const CarouselPrevious = React.forwardRef<
           : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
         className,
       )}
+=======
+      className={cn('h-8 w-8 rounded-full', className)}
+>>>>>>> origin/master
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
@@ -233,6 +240,7 @@ const CarouselNext = React.forwardRef<
       ref={ref}
       variant={variant}
       size={size}
+<<<<<<< HEAD
       className={cn(
         'absolute h-8 w-8 rounded-full',
         orientation === 'horizontal'
@@ -240,6 +248,9 @@ const CarouselNext = React.forwardRef<
           : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
         className,
       )}
+=======
+      className={cn('h-8 w-8 rounded-full', className)}
+>>>>>>> origin/master
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}

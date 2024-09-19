@@ -9,7 +9,11 @@ const Stars = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & StarProps
 >(({ value }, ref) => {
+<<<<<<< HEAD
   const [starsValue] = useState<number>(value);
+=======
+  const [starsValue, setStarsValue] = useState<number>(value);
+>>>>>>> origin/master
 
   // Function to generate an array representing full stars, half stars, and empty stars
   const renderStars = () => {

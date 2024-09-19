@@ -24,6 +24,14 @@ const SearchBox = () => {
         placeholder="Search for products..."
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+<<<<<<< HEAD
+=======
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            console.log(e.currentTarget.value); // eslint-disable-line no-console
+          }
+        }}
+>>>>>>> origin/master
       />
     </form>
   );

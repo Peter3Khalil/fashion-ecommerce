@@ -13,6 +13,7 @@ export {
   Twitter,
   CircleUser as UserIcon,
 } from 'lucide-react';
+<<<<<<< HEAD
 export {
   FaApplePay,
   FaCcMastercard,
@@ -23,4 +24,7 @@ export {
   FaStar,
   FaStarHalf,
 } from 'react-icons/fa';
+=======
+export { FaRegStar, FaStar, FaStarHalf } from 'react-icons/fa';
+>>>>>>> origin/master
 export { MdVerified } from 'react-icons/md';
