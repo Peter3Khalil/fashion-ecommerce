@@ -1,8 +1,8 @@
 'use client';
+import { SearchIcon } from '@/components/shared/icons';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-import { SearchIcon } from '@/components/shared/icons';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const SearchBox = () => {
   const [isFocused, setIsFocused] = useState(false);
@@ -24,11 +24,6 @@ const SearchBox = () => {
         placeholder="Search for products..."
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            console.log(e.currentTarget.value);
-          }
-        }}
       />
     </form>
   );

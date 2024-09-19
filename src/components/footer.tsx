@@ -1,5 +1,10 @@
 import {
+  FaApplePay,
+  FaCcMastercard,
+  FaCcVisa,
   Facebook,
+  FaGooglePay,
+  FaPaypal,
   Github,
   Instagram,
   Twitter,
@@ -9,7 +14,7 @@ import { Input } from '@/components/ui/input';
 import Link from 'next/link';
 import React from 'react';
 
-let Footer = React.forwardRef<
+const Footer = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(() => {
@@ -41,8 +46,8 @@ let Footer = React.forwardRef<
           <div className="text-start">
             <div className="text-3xl font-bold text-black">SHOP.CO</div>
             <div className="md:max-w-full lg:w-40">
-              We have clothes that suits your style and which you&apos;re proud to
-              wear. From women to men.
+              We have clothes that suits your style and which you&apos;re proud
+              to wear. From women to men.
             </div>
             <div className="flex gap-1">
               <Link href={'#'} className="rounded-full border border-black p-2">
@@ -149,15 +154,15 @@ let Footer = React.forwardRef<
               </div>
             </Link>
           </div>
-          <div className="mt-8 flex items-center justify-between border-t border-gray-300 pt-4 text-sm">
-            <div>Shop.co © 2000-2023, All Rights Reserved</div>
-            <div className="flex space-x-4">
-              {/* <img src="/visa.svg" alt="Visa" className="h-6" />
-              <img src="/paypal.svg" alt="PayPal" className="h-6" />
-              <img src="/mastercard.svg" alt="MasterCard" className="h-6" />
-              <img src="/apple-pay.svg" alt="Apple Pay" className="h-6" />
-              <img src="/google-pay.svg" alt="Google Pay" className="h-6" /> */}
-            </div>
+        </div>
+        <div className="mt-8 flex items-center justify-between border-t border-gray-300 pt-4 text-sm">
+          <div>Shop.co © 2000-2023, All Rights Reserved</div>
+          <div className="flex space-x-4">
+            <FaCcVisa className="h-6" />
+            <FaPaypal className="h-6" />
+            <FaCcMastercard className="h-6" />
+            <FaApplePay className="h-6" />
+            <FaGooglePay className="h-6" />
           </div>
         </div>
       </div>
