@@ -1,4 +1,5 @@
 'use client';
+import Footer from '@/components/footer';
 import Header from '@/components/header';
 import { MdVerified, StarIcon } from '@/components/shared/icons';
 import Stars from '@/components/stars';
@@ -189,7 +190,9 @@ const Home = () => {
         </Carousel>
       </main>
 
-      <footer></footer>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };
