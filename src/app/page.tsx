@@ -1,5 +1,7 @@
+'use client';
 import Header from '@/components/header';
-import { StarIcon } from '@/components/shared/icons';
+import { MdVerified, StarIcon } from '@/components/shared/icons';
+import Stars from '@/components/stars';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -8,6 +10,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import Image from 'next/image';
 
 const Home = () => {
@@ -144,6 +153,40 @@ const Home = () => {
             View All
           </Button>
         </section>
+        <Carousel>
+          <div className="flex flex-col items-center justify-between gap-4 px-4 md:flex-row md:px-10">
+            <div className="mb-10 text-center text-2xl font-bold md:text-4xl">
+              OUR HAPPY CUSTOMERS
+            </div>
+            <div className="flex gap-3 md:gap-7">
+              <CarouselPrevious className="static" />
+              <CarouselNext className="static" />
+            </div>
+          </div>
+          <CarouselContent>
+            {Array.from({ length: 5 }).map((_, index) => (
+              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                <div className="p-4">
+                  <Card className="w-full">
+                    <CardHeader>
+                      <Stars value={4.5} />
+                    </CardHeader>
+                    <CardContent className="flex items-center">
+                      <div className="text-lg font-bold">Dr. TONY</div>
+                      <MdVerified className="text-2xl text-green-700" />
+                    </CardContent>
+                    <CardHeader className="text-sm font-normal">
+                      Im blown away by the quality and style of the clothes I
+                      received from Shop.co. From casual wear to elegant
+                      dresses, every piece Ive bought has exceeded my
+                      expectations.
+                    </CardHeader>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </main>
 
       <footer></footer>
