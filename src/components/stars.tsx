@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 
 type StarProps = {
   value: number; // The rating value from 1 to 5, allowing for half values like 4.5
+  withReview?: boolean;
 };
 
 const Stars = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & StarProps
->(({ value }, ref) => {
+>(({ value, withReview }, ref) => {
   const [starsValue] = useState<number>(value);
 
   // Function to generate an array representing full stars, half stars, and empty stars
@@ -31,7 +32,10 @@ const Stars = React.forwardRef<
 
   return (
     <div ref={ref} className="flex gap-1">
-      {renderStars()} {/* Render the stars based on the rating */}
+      <div className="flex items-baseline">
+        <div className="flex">{renderStars()}</div>
+        <div className="text-base">{withReview && value.toString() + '/5'}</div>
+      </div>
     </div>
   );
 });

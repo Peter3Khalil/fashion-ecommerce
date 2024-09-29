@@ -18,7 +18,7 @@ const Header: FC<React.HTMLAttributes<HTMLDivElement>> = ({
   return (
     <header
       className={cn(
-        'fixed left-0 top-0 z-10 flex h-16 w-full items-center justify-between border-b bg-background px-4 text-foreground md:gap-12 md:px-16 lg:px-24',
+        'fixed left-0 top-0 z-10 flex h-16 w-full items-center justify-between border-b bg-background px-4 text-foreground md:gap-12 lg:px-24',
         className,
       )}
       {...props}
