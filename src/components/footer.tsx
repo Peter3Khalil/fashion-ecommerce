@@ -49,7 +49,7 @@ const Footer = React.forwardRef<
           <div className="text-start max-md:col-span-2">
             <h3 className="mb-4 text-3xl font-bold text-black">SHOP.CO</h3>
             <p className="mb-4 max-w-xs text-gray-600">
-              We have clothes that suit your style and which you're proud to
+              We have clothes that suit your style and which you are proud to
               wear. From women to men.
             </p>
             <div className="flex space-x-2">

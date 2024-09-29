@@ -27,7 +27,7 @@ type Products = {
   }[];
 };
 
-let Product = React.forwardRef<
+const Product = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & Products
 >(({ ContainerTitle, products }) => {
