@@ -1,10 +1,16 @@
 'use client';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
-import Product from '@/components/product';
 import Stars from '@/components/stars';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import {
   Carousel,
   CarouselContent,
@@ -13,9 +19,60 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import Image from 'next/image';
+import { useState } from 'react';
 import { MdVerified } from 'react-icons/md';
 
 const Home = () => {
+  const [products] = useState([
+    {
+      image: '/images/hero.webp',
+      name: 'test',
+      price: {
+        afterPrice: 30,
+        discount: {
+          beforPrice: 54,
+          discountPercent: 15,
+        },
+      },
+      review: 5,
+    },
+    {
+      image: '/images/hero.webp',
+      name: 'test',
+      price: {
+        afterPrice: 30,
+        discount: {
+          beforPrice: 54,
+          discountPercent: 15,
+        },
+      },
+      review: 5,
+    },
+    {
+      image: '/images/hero.webp',
+      name: 'test',
+      price: {
+        afterPrice: 30,
+        discount: {
+          beforPrice: 54,
+          discountPercent: 15,
+        },
+      },
+      review: 5,
+    },
+    {
+      image: '/images/hero.webp',
+      name: 'test',
+      price: {
+        afterPrice: 30,
+        discount: {
+          beforPrice: 54,
+          discountPercent: 15,
+        },
+      },
+      review: 5,
+    },
+  ]);
   return (
     <div className="min-h-svh overflow-y-auto overflow-x-hidden pt-16">
       <Header />
@@ -59,116 +116,117 @@ const Home = () => {
           </div>
         </section>
         <div className="mt-32"></div>
-        <Product
-          ContainerTitle="new arrivals"
-          className=""
-          products={[
-            {
-              image: '/images/hero.webp',
-              name: 'test',
-              price: {
-                afterPrice: 30,
-                discount: {
-                  beforPrice: 54,
-                  discountPercent: 15,
-                },
-              },
-              review: 5,
-            },
-            {
-              image: '/images/hero.webp',
-              name: 'test',
-              price: {
-                afterPrice: 30,
-                discount: {
-                  beforPrice: 54,
-                  discountPercent: 15,
-                },
-              },
-              review: 5,
-            },
-            {
-              image: '/images/hero.webp',
-              name: 'test',
-              price: {
-                afterPrice: 30,
-                discount: {
-                  beforPrice: 54,
-                  discountPercent: 15,
-                },
-              },
-              review: 5,
-            },
-            {
-              image: '/images/hero.webp',
-              name: 'test',
-              price: {
-                afterPrice: 30,
-                discount: {
-                  beforPrice: 54,
-                  discountPercent: 15,
-                },
-              },
-              review: 5,
-            },
-          ]}
-        />
-        <div className="mt-16">
+        <div className="px-4 md:px-[18px] lg:px-[108px]">
+          <center>
+            <div className="text-3xl font-bold uppercase">new arrivals</div>
+          </center>
+          <div className="mt-8 flex items-center gap-2 overflow-auto">
+            {products.map((d: (typeof products)[0], f) => (
+              <Card key={f} className="w-[250px] border">
+                <CardHeader>
+                  <CardTitle className="flex">
+                    <Image
+                      src={d.image}
+                      alt={d.name}
+                      width={150}
+                      height={150}
+                      className="mx-auto h-auto w-full rounded-2xl object-contain md:w-auto"
+                    />
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-lg font-bold capitalize">{d.name}</div>
+                </CardContent>
+                <CardFooter>
+                  <div className="block">
+                    <Stars value={d.review} withReview={true} />
+                    <div className="flex items-center gap-2">
+                      <div className="text-lg font-bold">
+                        ${d.price.afterPrice}
+                      </div>
+                      {d.price.discount && (
+                        <>
+                          <div className="font-bold text-slate-400 line-through">
+                            ${d.price.discount.beforPrice}
+                          </div>
+                          <Badge className="" variant="discount">
+                            {d.price.discount.discountPercent}%
+                          </Badge>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+          <center>
+            <Button
+              type="button"
+              variant={'outline'}
+              className="mt-10 w-56 rounded-full"
+            >
+              View All
+            </Button>
+          </center>
+        </div>
+        <div className="mt-8">
           <hr className="m-24 mb-16 border border-black opacity-10" />
         </div>
-        <Product
-          ContainerTitle="top selling"
-          products={[
-            {
-              image: '/images/hero.webp',
-              name: 'test',
-              price: {
-                afterPrice: 30,
-                discount: {
-                  beforPrice: 54,
-                  discountPercent: 15,
-                },
-              },
-              review: 5,
-            },
-            {
-              image: '/images/hero.webp',
-              name: 'test',
-              price: {
-                afterPrice: 30,
-                discount: {
-                  beforPrice: 54,
-                  discountPercent: 15,
-                },
-              },
-              review: 5,
-            },
-            {
-              image: '/images/hero.webp',
-              name: 'test',
-              price: {
-                afterPrice: 30,
-                discount: {
-                  beforPrice: 54,
-                  discountPercent: 15,
-                },
-              },
-              review: 5,
-            },
-            {
-              image: '/images/hero.webp',
-              name: 'test',
-              price: {
-                afterPrice: 30,
-                discount: {
-                  beforPrice: 54,
-                  discountPercent: 15,
-                },
-              },
-              review: 5,
-            },
-          ]}
-        />
+        <div className="px-4 md:px-[18px] lg:px-[108px]">
+          <center>
+            <div className="text-3xl font-bold uppercase">top selling</div>
+          </center>
+          <div className="mt-8 flex items-center gap-2 overflow-auto">
+            {products.map((d: (typeof products)[0], f) => (
+              <Card key={f} className="w-[250px] border">
+                <CardHeader>
+                  <CardTitle className="flex">
+                    <Image
+                      src={d.image}
+                      alt={d.name}
+                      width={150}
+                      height={150}
+                      className="mx-auto h-auto w-full rounded-2xl object-contain md:w-auto"
+                    />
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-lg font-bold capitalize">{d.name}</div>
+                </CardContent>
+                <CardFooter>
+                  <div className="block">
+                    <Stars value={d.review} withReview={true} />
+                    <div className="flex items-center gap-2">
+                      <div className="text-lg font-bold">
+                        ${d.price.afterPrice}
+                      </div>
+                      {d.price.discount && (
+                        <>
+                          <div className="font-bold text-slate-400 line-through">
+                            ${d.price.discount.beforPrice}
+                          </div>
+                          <Badge className="" variant="discount">
+                            {d.price.discount.discountPercent}%
+                          </Badge>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+          <center>
+            <Button
+              type="button"
+              variant={'outline'}
+              className="mb-20 mt-10 w-56 rounded-full"
+            >
+              View All
+            </Button>
+          </center>
+        </div>
         <Carousel>
           <div className="flex flex-col items-center justify-between gap-4 px-4 pt-6 md:px-16 md:pt-16 lg:flex-row lg:px-24">
             <div className="mb-10 text-center text-2xl font-bold md:text-4xl">
@@ -180,11 +238,6 @@ const Home = () => {
             </div>
           </div>
           <div className="relative overflow-hidden">
-            <div className="pointer-events-none fixed left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-white to-transparent blur-md"></div>
-
-            {/* Right blur effect */}
-            <div className="pointer-events-none fixed right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-white to-transparent blur-md"></div>
-
             <CarouselContent className="px-4 md:px-[18px] lg:px-[108px]">
               {Array.from({ length: 5 }).map((_, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">

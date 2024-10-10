@@ -1,6 +1,5 @@
 import Star from '@/components/stars';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -8,85 +7,65 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import React from 'react';
 
 type Products = {
-  ContainerTitle?: string;
-  products: {
-    name: string;
-    image: string;
-    price: {
-      discount?: {
-        beforPrice: number;
-        discountPercent: number;
-      };
-      afterPrice: number;
+  name: string;
+  image: string;
+  price: {
+    discount?: {
+      beforPrice: number;
+      discountPercent: number;
     };
-    review: number;
-  }[];
+    afterPrice: number;
+  };
+  review: number;
 };
 
 const Product = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & Products
->(({ ContainerTitle, products }) => {
+>(({ name, image, price, review, className }) => {
   return (
-    <div className="px-4 md:px-[18px] lg:px-[108px]">
-      <center>
-        <div className="text-3xl font-bold uppercase">{ContainerTitle}</div>
-      </center>
-      <div className="mt-8 flex items-center gap-2 overflow-auto">
-        {products.map((d, f) => (
-          <Card key={f} className="min-w-[250px] border">
-            <CardHeader>
-              <CardTitle className="flex">
-                <Image
-                  src={d.image}
-                  alt={d.name}
-                  width={150}
-                  height={150}
-                  className="mx-auto h-auto w-full rounded-2xl object-contain md:w-auto"
-                />
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-lg font-bold capitalize">{d.name}</div>
-            </CardContent>
-            <CardFooter>
-              <div className="block">
-                <Star value={d.review} withReview={true} />
-                <div className="flex items-center gap-2">
-                  <div className="text-lg font-bold">${d.price.afterPrice}</div>
-                  {d.price.discount && (
-                    <>
-                      <div className="font-bold text-slate-400 line-through">
-                        ${d.price.discount.beforPrice}
-                      </div>
-                      <Badge className="" variant="discount">
-                        {d.price.discount.discountPercent}%
-                      </Badge>
-                    </>
-                  )}
+    <Card className={cn('w-[250px] border', className)}>
+      <CardHeader>
+        <CardTitle className="flex">
+          <Image
+            src={image}
+            alt={name}
+            width={150}
+            height={150}
+            className="mx-auto h-auto w-full rounded-2xl object-contain md:w-auto"
+          />
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="text-lg font-bold capitalize">{name}</div>
+      </CardContent>
+      <CardFooter>
+        <div className="block">
+          <Star value={review} withReview={true} />
+          <div className="flex items-center gap-2">
+            <div className="text-lg font-bold">${price.afterPrice}</div>
+            {price.discount && (
+              <>
+                <div className="font-bold text-slate-400 line-through">
+                  ${price.discount.beforPrice}
                 </div>
-              </div>
-            </CardFooter>
-          </Card>
-        ))}
-      </div>
-      <center>
-        <Button
-          type="button"
-          variant={'outline'}
-          className="mb-20 mt-10 w-56 rounded-full"
-        >
-          View All
-        </Button>
-      </center>
-    </div>
+                <Badge className="" variant="discount">
+                  {price.discount.discountPercent}%
+                </Badge>
+              </>
+            )}
+          </div>
+        </div>
+      </CardFooter>
+    </Card>
   );
 });
 
-Product.displayName = 'Footer';
+Product.displayName = 'Product';
 
 export default Product;
