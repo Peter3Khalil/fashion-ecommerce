@@ -1,5 +1,6 @@
 export {
   Facebook,
+  Filter,
   Github,
   Instagram,
   LucideStars,

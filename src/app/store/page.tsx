@@ -4,6 +4,7 @@ import Footer from '@/components/footer';
 import Header from '@/components/header';
 import Product from '@/components/product';
 import { SelectableBadge } from '@/components/selectableBadge';
+import { Filter } from '@/components/shared/icons';
 import {
   Accordion,
   AccordionContent,
@@ -26,6 +27,13 @@ import {
   FormItem,
   FormLabel,
 } from '@/components/ui/form';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import { Slider } from '@/components/ui/slider';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -130,7 +138,7 @@ const Store = () => {
                         control={form.control}
                         name="price"
                         render={({ field }) => (
-                          <FormItem className="mt-2 flex flex-row items-start">
+                          <FormItem className="mr-3 mt-2 flex flex-row items-start justify-center">
                             <Slider
                               value={field.value}
                               max={200} // Adjust max value according to your needs
@@ -188,11 +196,13 @@ const Store = () => {
                           <FormItem className="grid grid-cols-2 gap-3">
                             {(
                               form.control._defaultValues.sizes as string[]
-                            ).map((color: string) => (
+                            ).map((color: string, index) => (
                               <>
                                 <SelectableBadge
+                                  key={index}
                                   label={color}
-                                  onChange={(checked) => {
+                                  checked={field.value.includes(color)}
+                                  onToggleBadge={(checked) => {
                                     if (checked) {
                                       field.onChange([...field.value, color]);
                                     } else {
@@ -222,17 +232,19 @@ const Store = () => {
                           <FormItem className="grid grid-cols-2 gap-3">
                             {(
                               form.control._defaultValues.dressStyle as string[]
-                            ).map((color: string) => (
+                            ).map((size: string, index) => (
                               <>
                                 <SelectableBadge
-                                  label={color}
-                                  onChange={(checked) => {
+                                  key={index}
+                                  label={size}
+                                  checked={field.value.includes(size)}
+                                  onToggleBadge={(checked) => {
                                     if (checked) {
-                                      field.onChange([...field.value, color]);
+                                      field.onChange([...field.value, size]);
                                     } else {
                                       field.onChange(
                                         field.value.filter(
-                                          (value) => value !== color,
+                                          (value) => value !== size,
                                         ),
                                       );
                                     }
@@ -256,9 +268,223 @@ const Store = () => {
 
           {/* Product Grid */}
           <main>
-            <h2 className="mb-4 text-2xl font-bold">Casual</h2>
+            <div className="flex justify-between">
+              <h2 className="mb-4 text-2xl font-bold">Casual</h2>
+              <div className="block lg:hidden">
+                <Sheet>
+                  <SheetTrigger>
+                    <Filter />
+                  </SheetTrigger>
+                  <SheetContent side={'bottom'}>
+                    <SheetHeader>
+                      <SheetTitle>Filter</SheetTitle>
+                    </SheetHeader>
+                    <Accordion type="single" className="">
+                      <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)}>
+                          <AccordionItem value="item-1">
+                            <AccordionTrigger>Categories</AccordionTrigger>
+                            <AccordionContent>
+                              <FormField
+                                control={form.control}
+                                name="categories"
+                                render={({ field }) => (
+                                  <>
+                                    {(
+                                      form.control._defaultValues
+                                        .categories as string[]
+                                    ).map((item) => (
+                                      <FormItem
+                                        key={item}
+                                        className="flex flex-row items-center"
+                                      >
+                                        <FormControl>
+                                          <Checkbox
+                                            checked={field.value.includes(item)}
+                                            onCheckedChange={(checked) => {
+                                              if (checked) {
+                                                field.onChange([
+                                                  ...field.value,
+                                                  item,
+                                                ]);
+                                              } else {
+                                                field.onChange(
+                                                  field.value.filter(
+                                                    (value) => value !== item,
+                                                  ),
+                                                );
+                                              }
+                                            }}
+                                            className="m-2 flex h-5 w-5 items-center justify-center"
+                                          />
+                                        </FormControl>
+                                        <FormLabel className="font-normal">
+                                          {item}
+                                        </FormLabel>
+                                      </FormItem>
+                                    ))}
+                                  </>
+                                )}
+                              />
+                            </AccordionContent>
+                          </AccordionItem>
 
-            <div className="grid grid-cols-2 gap-16 md:grid-cols-3 lg:grid-cols-4">
+                          <AccordionItem value="item-2">
+                            <AccordionTrigger>Price</AccordionTrigger>
+                            <AccordionContent>
+                              <FormField
+                                control={form.control}
+                                name="price"
+                                render={({ field }) => (
+                                  <FormItem className="mr-3 mt-2 flex flex-row items-start justify-center">
+                                    <Slider
+                                      value={field.value}
+                                      max={200} // Adjust max value according to your needs
+                                      step={1}
+                                      range={true}
+                                      onValueChange={(e) => field.onChange(e)}
+                                    />
+                                  </FormItem>
+                                )}
+                              />
+                            </AccordionContent>
+                          </AccordionItem>
+
+                          <AccordionItem value="item-3">
+                            <AccordionTrigger>Color</AccordionTrigger>
+                            <AccordionContent>
+                              <FormField
+                                control={form.control}
+                                name="colors"
+                                render={({ field }) => (
+                                  <FormItem className="grid grid-cols-4 place-items-center gap-3">
+                                    {(
+                                      form.control._defaultValues
+                                        .colors as string[]
+                                    ).map((color) => (
+                                      <Checkbox
+                                        key={color}
+                                        value={color}
+                                        checked={field.value.includes(
+                                          color as string,
+                                        )}
+                                        onCheckedChange={(checked) => {
+                                          if (checked) {
+                                            field.onChange([
+                                              ...field.value,
+                                              color,
+                                            ]);
+                                          } else {
+                                            field.onChange(
+                                              field.value.filter(
+                                                (value) => value !== color,
+                                              ),
+                                            );
+                                          }
+                                        }}
+                                        className={`${color} h-9 w-9 data-[state=checked]:text-black data-[state=checked]:${color}`}
+                                      />
+                                    ))}
+                                  </FormItem>
+                                )}
+                              />
+                            </AccordionContent>
+                          </AccordionItem>
+                          <AccordionItem value="item-4">
+                            <AccordionTrigger>Sizes</AccordionTrigger>
+                            <AccordionContent>
+                              <FormField
+                                control={form.control}
+                                name="sizes"
+                                render={({ field }) => (
+                                  <FormItem className="grid grid-cols-2 gap-3">
+                                    {(
+                                      form.control._defaultValues
+                                        .sizes as string[]
+                                    ).map((color: string, index) => (
+                                      <>
+                                        <SelectableBadge
+                                          key={index}
+                                          label={color}
+                                          checked={field.value.includes(color)}
+                                          onToggleBadge={(checked) => {
+                                            if (checked) {
+                                              field.onChange([
+                                                ...field.value,
+                                                color,
+                                              ]);
+                                            } else {
+                                              field.onChange(
+                                                field.value.filter(
+                                                  (value) => value !== color,
+                                                ),
+                                              );
+                                            }
+                                          }}
+                                        />
+                                      </>
+                                    ))}
+                                  </FormItem>
+                                )}
+                              />
+                            </AccordionContent>
+                          </AccordionItem>
+
+                          <AccordionItem value="item-5">
+                            <AccordionTrigger>DressStyle</AccordionTrigger>
+                            <AccordionContent>
+                              <FormField
+                                control={form.control}
+                                name="dressStyle"
+                                render={({ field }) => (
+                                  <FormItem className="grid grid-cols-2 gap-3">
+                                    {(
+                                      form.control._defaultValues
+                                        .dressStyle as string[]
+                                    ).map((size: string, index) => (
+                                      <>
+                                        <SelectableBadge
+                                          key={index}
+                                          label={size}
+                                          checked={field.value.includes(size)}
+                                          onToggleBadge={(checked) => {
+                                            if (checked) {
+                                              field.onChange([
+                                                ...field.value,
+                                                size,
+                                              ]);
+                                            } else {
+                                              field.onChange(
+                                                field.value.filter(
+                                                  (value) => value !== size,
+                                                ),
+                                              );
+                                            }
+                                          }}
+                                        />
+                                      </>
+                                    ))}
+                                  </FormItem>
+                                )}
+                              />
+                            </AccordionContent>
+                          </AccordionItem>
+
+                          <Button
+                            className="mt-4 w-full rounded-full"
+                            type="submit"
+                          >
+                            Apply Filters
+                          </Button>
+                        </form>
+                      </Form>
+                    </Accordion>
+                  </SheetContent>
+                </Sheet>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-16 md:grid-cols-3">
               {/* Example Product Cards */}
               {[...Array(4)].map((_, index) => (
                 <Product

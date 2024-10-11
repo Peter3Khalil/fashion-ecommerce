@@ -2,26 +2,33 @@
 
 import { useState } from 'react';
 
-type Properties = {
+interface Properties extends React.HTMLAttributes<HTMLSpanElement> {
   label: React.ReactNode;
-  onChange: (selected: boolean) => void; // Corrected prop type
-};
+  checked: boolean;
+  onToggleBadge: (selected: boolean) => void;
+}
 
-const SelectableBadge = ({ label, onChange }: Properties) => {
-  const [selected, setSelected] = useState(false);
+const SelectableBadge = ({
+  label,
+  onToggleBadge,
+  checked,
+  ...spanProps
+}: Properties) => {
+  const [selected, setSelected] = useState(checked);
 
   const toggleBadge = () => {
     const newState = !selected;
     setSelected(newState);
-    onChange(newState); // Call onChange with the new state
+    onToggleBadge(newState);
   };
 
   return (
     <span
-      onClick={toggleBadge} // Corrected to just reference the function
+      onClick={toggleBadge}
+      {...spanProps} // Spread all standard span properties
       className={`cursor-pointer select-none rounded-full px-4 py-2 text-center transition-colors ${
         selected ? 'bg-black text-white' : 'bg-gray-200 text-gray-700'
-      }`}
+      } ${spanProps.className || ''}`} // Append custom classes
     >
       {label}
     </span>
