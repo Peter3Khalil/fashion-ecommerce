@@ -22,57 +22,120 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { MdVerified } from 'react-icons/md';
 
+const PRODUCTS = [
+  {
+    image: '/images/hero.webp',
+    name: 'test',
+    price: {
+      afterPrice: 30,
+      discount: {
+        beforePrice: 54,
+        discountPercent: 15,
+      },
+    },
+    review: 5,
+  },
+
+  {
+    image: '/images/hero.webp',
+    name: 'test',
+    price: {
+      afterPrice: 30,
+      discount: {
+        beforePrice: 54,
+        discountPercent: 15,
+      },
+    },
+    review: 5,
+  },
+
+  {
+    image: '/images/hero.webp',
+    name: 'test',
+    price: {
+      afterPrice: 30,
+      discount: {
+        beforePrice: 54,
+        discountPercent: 15,
+      },
+    },
+    review: 5,
+  },
+
+  {
+    image: '/images/hero.webp',
+    name: 'test',
+    price: {
+      afterPrice: 30,
+      discount: {
+        beforePrice: 54,
+        discountPercent: 15,
+      },
+    },
+    review: 5,
+  },
+  // ... other products
+];
+
+interface Product {
+  image: string;
+  name: string;
+  price: {
+    afterPrice: number;
+    discount?: {
+      beforePrice: number;
+      discountPercent: number;
+    };
+  };
+  review: number;
+}
+
+const ProductCard = ({ product }: { product: Product }) => (
+  <Card className="w-[250px] border">
+    <CardHeader>
+      <CardTitle className="flex">
+        <Image
+          src={product.image}
+          alt={product.name}
+          width={150}
+          height={150}
+          className="mx-auto h-auto w-full rounded-2xl object-contain md:w-auto"
+        />
+      </CardTitle>
+    </CardHeader>
+    <CardContent>
+      <div className="text-lg font-bold capitalize">{product.name}</div>
+    </CardContent>
+    <CardFooter>
+      <div className="block">
+        <Stars value={product.review} withReview={true} />
+        <div className="flex items-center gap-2">
+          <div className="text-lg font-bold">${product.price.afterPrice}</div>
+          {product.price.discount && (
+            <>
+              <div className="font-bold text-slate-400 line-through">
+                ${product.price.discount.beforePrice}
+              </div>
+              <Badge className="" variant="discount">
+                {product.price.discount.discountPercent}%
+              </Badge>
+            </>
+          )}
+        </div>
+      </div>
+    </CardFooter>
+  </Card>
+);
+
+const SectionTitle = ({ title }: { title: string }) => (
+  <center>
+    <div className="text-3xl font-bold uppercase">{title}</div>
+  </center>
+);
+
 const Home = () => {
-  const [products] = useState([
-    {
-      image: '/images/hero.webp',
-      name: 'test',
-      price: {
-        afterPrice: 30,
-        discount: {
-          beforPrice: 54,
-          discountPercent: 15,
-        },
-      },
-      review: 5,
-    },
-    {
-      image: '/images/hero.webp',
-      name: 'test',
-      price: {
-        afterPrice: 30,
-        discount: {
-          beforPrice: 54,
-          discountPercent: 15,
-        },
-      },
-      review: 5,
-    },
-    {
-      image: '/images/hero.webp',
-      name: 'test',
-      price: {
-        afterPrice: 30,
-        discount: {
-          beforPrice: 54,
-          discountPercent: 15,
-        },
-      },
-      review: 5,
-    },
-    {
-      image: '/images/hero.webp',
-      name: 'test',
-      price: {
-        afterPrice: 30,
-        discount: {
-          beforPrice: 54,
-          discountPercent: 15,
-        },
-      },
-      review: 5,
-    },
-  ]);
+  const [products] = useState(PRODUCTS);
+
   return (
     <div className="min-h-svh overflow-y-auto overflow-x-hidden pt-16">
       <Header />
@@ -117,47 +180,10 @@ const Home = () => {
         </section>
         <div className="mt-32"></div>
         <div className="px-4 md:px-[18px] lg:px-[108px]">
-          <center>
-            <div className="text-3xl font-bold uppercase">new arrivals</div>
-          </center>
+          <SectionTitle title="new arrivals" />
           <div className="mt-8 flex items-center gap-2 overflow-auto">
-            {products.map((d: (typeof products)[0], f) => (
-              <Card key={f} className="w-[250px] border">
-                <CardHeader>
-                  <CardTitle className="flex">
-                    <Image
-                      src={d.image}
-                      alt={d.name}
-                      width={150}
-                      height={150}
-                      className="mx-auto h-auto w-full rounded-2xl object-contain md:w-auto"
-                    />
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-lg font-bold capitalize">{d.name}</div>
-                </CardContent>
-                <CardFooter>
-                  <div className="block">
-                    <Stars value={d.review} withReview={true} />
-                    <div className="flex items-center gap-2">
-                      <div className="text-lg font-bold">
-                        ${d.price.afterPrice}
-                      </div>
-                      {d.price.discount && (
-                        <>
-                          <div className="font-bold text-slate-400 line-through">
-                            ${d.price.discount.beforPrice}
-                          </div>
-                          <Badge className="" variant="discount">
-                            {d.price.discount.discountPercent}%
-                          </Badge>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </CardFooter>
-              </Card>
+            {products.map((product, index) => (
+              <ProductCard key={index} product={product} />
             ))}
           </div>
           <center>
@@ -174,47 +200,10 @@ const Home = () => {
           <hr className="m-24 mb-16 border border-black opacity-10" />
         </div>
         <div className="px-4 md:px-[18px] lg:px-[108px]">
-          <center>
-            <div className="text-3xl font-bold uppercase">top selling</div>
-          </center>
+          <SectionTitle title="top selling" />
           <div className="mt-8 flex items-center gap-2 overflow-auto">
-            {products.map((d: (typeof products)[0], f) => (
-              <Card key={f} className="w-[250px] border">
-                <CardHeader>
-                  <CardTitle className="flex">
-                    <Image
-                      src={d.image}
-                      alt={d.name}
-                      width={150}
-                      height={150}
-                      className="mx-auto h-auto w-full rounded-2xl object-contain md:w-auto"
-                    />
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-lg font-bold capitalize">{d.name}</div>
-                </CardContent>
-                <CardFooter>
-                  <div className="block">
-                    <Stars value={d.review} withReview={true} />
-                    <div className="flex items-center gap-2">
-                      <div className="text-lg font-bold">
-                        ${d.price.afterPrice}
-                      </div>
-                      {d.price.discount && (
-                        <>
-                          <div className="font-bold text-slate-400 line-through">
-                            ${d.price.discount.beforPrice}
-                          </div>
-                          <Badge className="" variant="discount">
-                            {d.price.discount.discountPercent}%
-                          </Badge>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </CardFooter>
-              </Card>
+            {products.map((product, index) => (
+              <ProductCard key={index} product={product} />
             ))}
           </div>
           <center>

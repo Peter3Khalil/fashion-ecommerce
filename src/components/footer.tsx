@@ -19,23 +19,23 @@ const Footer = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(() => {
   return (
-    <footer className="relative mt-96 bg-gray-100 max-md:mt-28">
+    <footer className="relative mt-96 bg-gray-100 max-md:mt-80">
       {/* Newsletter Section */}
-      <div className="absolute -top-28 left-1/2 m-auto w-10/12 -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-black py-8 text-white">
+      <div className="absolute -top-28 left-1/2 m-auto w-10/12 -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-black py-8 text-white max-sm:w-full max-sm:py-4">
         <div className="container flex flex-row items-center max-md:flex-col max-sm:flex-col lg:justify-between lg:px-24">
-          <h2 className="text-3xl font-bold lg:text-left lg:text-4xl">
+          <h2 className="text-3xl font-bold max-sm:text-center max-sm:text-2xl lg:text-left lg:text-4xl">
             STAY UP TO DATE ABOUT OUR LATEST OFFERS
           </h2>
           <center>
-            <div className="m-5 flex flex-col gap-4 lg:mt-0 lg:items-center">
+            <div className="m-5 flex flex-col gap-4 max-sm:w-full lg:mt-0 lg:items-center">
               <Input
                 type="email"
                 placeholder="Enter your email address"
-                className="ml-0 w-full rounded-3xl bg-white text-black lg:ml-4 lg:w-auto"
+                className="ml-0 w-full rounded-3xl bg-white text-black max-sm:w-full lg:ml-4 lg:w-auto"
               />
               <Button
                 variant={'outline'}
-                className="ml-0 w-full rounded-3xl bg-white text-black lg:ml-4 lg:w-auto"
+                className="ml-0 w-full rounded-3xl bg-white text-black max-sm:w-full lg:ml-4 lg:w-auto"
               >
                 Subscribe to Newsletter
               </Button>

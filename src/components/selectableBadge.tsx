@@ -26,9 +26,9 @@ const SelectableBadge = ({
     <span
       onClick={toggleBadge}
       {...spanProps} // Spread all standard span properties
-      className={`cursor-pointer select-none rounded-full px-4 py-2 text-center transition-colors ${
+      className={`w-fit cursor-pointer select-none rounded-full px-4 py-2 text-center transition-colors ${
         selected ? 'bg-black text-white' : 'bg-gray-200 text-gray-700'
-      } ${spanProps.className || ''}`} // Append custom classes
+      } ${spanProps.className ?? ''}`} // Append custom classes
     >
       {label}
     </span>
