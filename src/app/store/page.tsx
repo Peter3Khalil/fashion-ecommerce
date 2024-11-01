@@ -29,27 +29,17 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { Slider } from '@/components/ui/slider';
+import { DefaultValues } from '@/types/type';
 import { Key } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-const defaultValues = {
-  categories: ['tshirt', 'shirt', 'hoodie', 'jeans', 'short'],
-  price: [15, 200],
-  colors: [
-    'bg-green-500',
-    'bg-red-500',
-    'bg-yellow-500',
-    'bg-orange-500',
-    'bg-blue-500',
-    'bg-purple-500',
-    'bg-pink-500',
-    'bg-white border',
-  ],
-  sizes: ['small', 'medium', 'large', 'x-large'],
-  dressStyle: ['casual', 'formal', 'party', 'gym'],
+const defaultValues: DefaultValues = {
+  price: [0, 500],
+  colors: [],
+  categories: 'tshirt',
+  sizes: [],
+  dressStyle: 'casual',
 };
-
-type DefaultValuesKeys = keyof typeof defaultValues;
 
 const useStoreForm = () => {
   const form = useForm<typeof defaultValues>({ defaultValues });
@@ -76,7 +66,7 @@ const FilterAccordion = ({
             <AccordionContent>
               <FormField
                 control={form.control}
-                name={key as DefaultValuesKeys}
+                name={key as keyof DefaultValues}
                 render={({ field }) => (
                   <FormItem className="flex flex-wrap gap-3">
                     {key === 'price' ? (
@@ -90,7 +80,7 @@ const FilterAccordion = ({
                         className="mb-4 mt-2"
                       />
                     ) : (
-                      (defaultValues[key as DefaultValuesKeys] as any).map(
+                      (defaultValues[key as keyof DefaultValues] as any).map(
                         (
                           item: string | number | readonly string[],
                           idx: Key | null | undefined,
@@ -105,10 +95,13 @@ const FilterAccordion = ({
                               }
                               onCheckedChange={(checked) => {
                                 if (checked) {
-                                  field.onChange([...field.value, item]);
+                                  field.onChange([
+                                    ...(field.value as any[]),
+                                    item,
+                                  ]);
                                 } else {
                                   field.onChange(
-                                    field.value.filter(
+                                    (field.value as any[]).filter(
                                       (value: any) => value !== item,
                                     ),
                                   );
@@ -126,12 +119,17 @@ const FilterAccordion = ({
                               }
                               onToggleBadge={(selected) => {
                                 if (selected) {
-                                  field.onChange([...field.value, item]);
+                                  field.onChange(
+                                    Array.isArray(field.value)
+                                      ? [...field.value, item]
+                                      : [item],
+                                  );
                                 } else {
                                   field.onChange(
-                                    field.value.filter(
-                                      (value: any) => value !== item,
-                                    ),
+                                    Array.isArray(field.value) &&
+                                      field.value.filter(
+                                        (value: any) => value !== item,
+                                      ),
                                   );
                                 }
                               }}
@@ -196,16 +194,11 @@ const Store = () => {
               {[...Array(4)].map((_, index) => (
                 <Product
                   key={index}
-                  image="/images/hero.webp"
+                  photos={['/images/hero.webp']}
                   name="Test"
-                  price={{
-                    afterPrice: 30,
-                    discount: {
-                      beforPrice: 54,
-                      discountPercent: 15,
-                    },
-                  }}
-                  review={3.5}
+                  price={30}
+                  review={3}
+                  discount={0}
                 />
               ))}
             </div>

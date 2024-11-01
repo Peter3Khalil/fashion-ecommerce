@@ -1,5 +1,5 @@
+import Price from '@/components/price';
 import Star from '@/components/stars';
-import { Badge } from '@/components/ui/badge';
 import {
   Card,
   CardContent,
@@ -7,27 +7,15 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
+import { cn, Rating } from '@/lib/utils';
+import type { Product, Review } from '@/types/type';
 import Image from 'next/image';
 import React from 'react';
 
-type Products = {
-  name: string;
-  image: string;
-  price: {
-    discount?: {
-      beforPrice: number;
-      discountPercent: number;
-    };
-    afterPrice: number;
-  };
-  review: number;
-};
-
 const Product = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & Products
->(({ name, image, price, review, className }, ref) => {
+  React.HTMLAttributes<HTMLDivElement> & Product
+>(({ name, price, review, className, photos, discount }, ref) => {
   return (
     <Card
       ref={ref}
@@ -39,7 +27,7 @@ const Product = React.forwardRef<
       <CardHeader className="flex justify-center">
         <CardTitle className="flex items-center justify-center">
           <Image
-            src={image}
+            src={photos[0]}
             alt={name}
             width={150}
             height={150}
@@ -47,24 +35,12 @@ const Product = React.forwardRef<
           />
         </CardTitle>
       </CardHeader>
-      <CardContent className="text-center">
+      <CardContent className="text-start">
         <div className="text-lg font-bold capitalize">{name}</div>
       </CardContent>
-      <CardFooter className="flex flex-col items-center gap-2">
-        <Star value={review} withReview={true} />
-        <div className="flex items-center gap-2 text-lg font-bold">
-          <div className="text-black">${price.afterPrice}</div>
-          {price.discount && (
-            <>
-              <div className="font-bold text-gray-400 line-through">
-                ${price.discount.beforPrice}
-              </div>
-              <Badge className="rounded-full bg-red-500 px-2 py-1 text-xs text-white">
-                {price.discount.discountPercent}%
-              </Badge>
-            </>
-          )}
-        </div>
+      <CardFooter className="flex flex-col items-start gap-2">
+        <Star value={Rating(review as Review[])} withReview={true} />
+        <Price price={price} discount={discount ?? 0} />
       </CardFooter>
     </Card>
   );
