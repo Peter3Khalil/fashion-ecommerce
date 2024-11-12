@@ -18,7 +18,7 @@ const Header: FC<React.HTMLAttributes<HTMLDivElement>> = ({
   return (
     <header
       className={cn(
-        'fixed left-0 top-0 z-10 flex h-16 w-full items-center justify-between border-b bg-background px-4 text-foreground md:gap-12 md:px-16 lg:px-24',
+        'fixed left-0 top-0 z-10 flex h-16 w-full items-center justify-between border-b bg-background px-4 text-foreground md:gap-12 lg:px-24',
         className,
       )}
       {...props}
@@ -37,7 +37,7 @@ const Header: FC<React.HTMLAttributes<HTMLDivElement>> = ({
                     key={item}
                     className="w-full rounded text-muted-foreground duration-300 hover:bg-accent hover:text-foreground"
                   >
-                    <Link href="/" className="block w-full p-2">
+                    <Link href="/store" className="block w-full p-2">
                       {item}
                     </Link>
                   </li>
@@ -57,7 +57,7 @@ const Header: FC<React.HTMLAttributes<HTMLDivElement>> = ({
               key={item}
               className="text-muted-foreground duration-300 hover:text-foreground"
             >
-              <Link href="/">{item}</Link>
+              <Link href="/store">{item}</Link>
             </li>
           ))}
         </ul>

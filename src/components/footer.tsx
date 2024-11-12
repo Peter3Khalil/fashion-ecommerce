@@ -19,37 +19,40 @@ const Footer = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(() => {
   return (
-    <center>
-      <div className="relative max-md:px-4 md:px-12 lg:px-24">
-        <div className="w-full">
-          <div className="flex items-center justify-center rounded-3xl bg-black py-8 max-md:flex-wrap max-md:gap-8 lg:px-10">
-            <div className="w-full px-4 text-start font-bold text-white max-md:px-4 max-md:text-2xl lg:px-12 lg:text-4xl">
-              STAY UP TO DATE ABOUT OUR LATEST OFFERS
-            </div>
-            <div className="flex w-full flex-col gap-4 px-12 max-md:items-center max-md:px-4 lg:w-auto">
-              <Input
-                type="email"
-                placeholder="Email"
-                className="w-full rounded-3xl max-md:w-full"
-              />
-              <Button
-                variant={'outline'}
-                className="w-full rounded-3xl bg-white text-center max-md:w-full"
-              >
-                Subscribe to Newsletter
-              </Button>
-            </div>
+    <footer className="relative mt-96 bg-gray-100 max-md:mt-80">
+      {/* Newsletter Section */}
+      <div className="absolute -top-28 left-1/2 m-auto w-10/12 -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-black py-8 text-white max-sm:w-auto max-sm:py-4">
+        <div className="container flex flex-row items-center max-md:flex-col max-sm:flex-col lg:justify-between lg:px-24">
+          <h2 className="text-3xl font-bold max-sm:text-center max-sm:text-2xl lg:text-left lg:text-4xl">
+            STAY UP TO DATE ABOUT OUR LATEST OFFERS
+          </h2>
+          <div className="m-5 flex flex-col gap-4 max-sm:w-full lg:mt-0 lg:items-center">
+            <Input
+              type="email"
+              placeholder="Enter your email address"
+              className="ml-0 w-full rounded-3xl bg-white text-black max-sm:w-full lg:ml-4 lg:w-auto"
+            />
+            <Button
+              variant={'outline'}
+              className="ml-0 w-full rounded-3xl bg-white text-black max-sm:w-full lg:ml-4 lg:w-auto"
+            >
+              Subscribe to Newsletter
+            </Button>
           </div>
         </div>
+      </div>
 
-        <div className="flex justify-between bg-primary-foreground max-lg:flex-wrap">
-          <div className="text-start">
-            <div className="text-3xl font-bold text-black">SHOP.CO</div>
-            <div className="md:max-w-full lg:w-40">
-              We have clothes that suits your style and which you&apos;re proud
-              to wear. From women to men.
-            </div>
-            <div className="flex gap-1">
+      {/* Main Footer Section */}
+      <div className="container mx-auto px-4 py-12 pt-32 md:px-[18px] lg:px-[108px]">
+        <div className="grid gap-8 md:grid-cols-2 md:grid-rows-1 lg:grid-cols-5 lg:gap-16">
+          {/* Shop Info */}
+          <div className="text-start max-md:col-span-2">
+            <h3 className="mb-4 text-3xl font-bold text-black">SHOP.CO</h3>
+            <p className="mb-4 max-w-xs text-gray-600">
+              We have clothes that suit your style and which you are proud to
+              wear. From women to men.
+            </p>
+            <div className="flex space-x-2">
               <Link href={'#'} className="rounded-full border border-black p-2">
                 <Twitter />
               </Link>
@@ -64,109 +67,99 @@ const Footer = React.forwardRef<
               </Link>
             </div>
           </div>
-          <div className="text-start">
-            <div className="text-3xl font-bold text-black">COMPANY</div>
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">About</div>
-            </Link>
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">
-                Features
-              </div>
-            </Link>
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">Works</div>
-            </Link>
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">
-                Career
-              </div>
-            </Link>
-          </div>
-          <div className="text-start">
-            <div className="text-3xl font-bold text-black">HELP</div>
 
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">
-                Customer Support
-              </div>
-            </Link>
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">
-                Delivery Details
-              </div>
-            </Link>
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">
-                Terms & Conditions
-              </div>
-            </Link>
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">
-                Privacy Policy
-              </div>
-            </Link>
-          </div>
+          {/* Company Links */}
           <div className="text-start">
-            <div className="text-3xl font-bold text-black">FAQ</div>
+            <h4 className="mb-4 text-xl font-bold text-black">COMPANY</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="#">About</Link>
+              </li>
+              <li>
+                <Link href="#">Features</Link>
+              </li>
+              <li>
+                <Link href="#">Works</Link>
+              </li>
+              <li>
+                <Link href="#">Career</Link>
+              </li>
+            </ul>
+          </div>
 
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">
-                Account
-              </div>
-            </Link>
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">
-                Manage Deliveries
-              </div>
-            </Link>
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">
-                Orders
-              </div>
-            </Link>
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">
-                Payments
-              </div>
-            </Link>
-          </div>
+          {/* Help Links */}
           <div className="text-start">
-            <div className="text-3xl font-bold text-black">Resources</div>
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">
-                Free eBooks
-              </div>
-            </Link>
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">
-                Development Tutorial
-              </div>
-            </Link>
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">
-                How to - Blog
-              </div>
-            </Link>
-            <Link href={'#'}>
-              <div className="text-base font-normal bg-blend-darken">
-                Youtube Playlist
-              </div>
-            </Link>
+            <h4 className="mb-4 text-xl font-bold text-black">HELP</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="#">Customer Support</Link>
+              </li>
+              <li>
+                <Link href="#">Delivery Details</Link>
+              </li>
+              <li>
+                <Link href="#">Terms & Conditions</Link>
+              </li>
+              <li>
+                <Link href="#">Privacy Policy</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* FAQ Links */}
+          <div className="text-start">
+            <h4 className="mb-4 text-xl font-bold text-black">FAQ</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="#">Account</Link>
+              </li>
+              <li>
+                <Link href="#">Manage Deliveries</Link>
+              </li>
+              <li>
+                <Link href="#">Orders</Link>
+              </li>
+              <li>
+                <Link href="#">Payments</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Resources Links */}
+          <div className="text-start">
+            <h4 className="mb-4 text-xl font-bold text-black">RESOURCES</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="#">Free eBooks</Link>
+              </li>
+              <li>
+                <Link href="#">Development Tutorial</Link>
+              </li>
+              <li>
+                <Link href="#">How to - Blog</Link>
+              </li>
+              <li>
+                <Link href="#">Youtube Playlist</Link>
+              </li>
+            </ul>
           </div>
         </div>
-        <div className="mt-8 flex items-center justify-between border-t border-gray-300 pt-4 text-sm">
-          <div>Shop.co © 2000-2023, All Rights Reserved</div>
+
+        {/* Bottom Section */}
+        <div className="mt-8 flex flex-col items-center justify-between border-t border-gray-300 pt-4 text-sm lg:flex-row">
+          <div className="mb-4 lg:mb-0">
+            Shop.co © 2000-2023, All Rights Reserved
+          </div>
           <div className="flex space-x-4">
-            <FaCcVisa className="h-6" />
-            <FaPaypal className="h-6" />
-            <FaCcMastercard className="h-6" />
-            <FaApplePay className="h-6" />
-            <FaGooglePay className="h-6" />
+            <FaCcVisa className="h-6 w-6" />
+            <FaPaypal className="h-6 w-6" />
+            <FaCcMastercard className="h-6 w-6" />
+            <FaApplePay className="h-6 w-6" />
+            <FaGooglePay className="h-6 w-6" />
           </div>
         </div>
       </div>
-    </center>
+    </footer>
   );
 });
 
