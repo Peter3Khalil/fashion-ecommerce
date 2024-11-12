@@ -1,16 +1,10 @@
 'use client';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
+import { ProductCard, SectionTitle } from '@/components/product';
 import Stars from '@/components/stars';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import {
   Carousel,
   CarouselContent,
@@ -18,120 +12,201 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import { Product } from '@/types/type';
 import Image from 'next/image';
 import { useState } from 'react';
 import { MdVerified } from 'react-icons/md';
 
-const PRODUCTS = [
+const PRODUCTS: Product[] = [
   {
-    image: '/images/hero.webp',
-    name: 'test',
-    price: {
-      afterPrice: 30,
-      discount: {
-        beforePrice: 54,
-        discountPercent: 15,
-      },
+    name: 'Test Product',
+    price: 20,
+    discount: 10,
+    description: 'This is a sample description for the product.',
+    Key: {
+      categories: 'tshirt',
+      colors: ['bg-blue-500', 'bg-red-500', 'bg-green-500'],
+      dressStyle: 'casual',
+      price: [10, 100],
+      sizes: ['small', 'medium', 'large', 'x-large'],
     },
-    review: 5,
+    photos: [
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+    ],
+    review: [
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User1',
+        rating: 4,
+        review: 'Good product',
+      },
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User2',
+        rating: 3,
+        review: 'Average product',
+      },
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User3',
+        rating: 5,
+        review: 'Excellent product',
+      },
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User4',
+        rating: 5,
+        review: 'Highly recommend',
+      },
+    ],
   },
-
   {
-    image: '/images/hero.webp',
-    name: 'test',
-    price: {
-      afterPrice: 30,
-      discount: {
-        beforePrice: 54,
-        discountPercent: 15,
-      },
+    name: 'Test Product',
+    price: 20,
+    discount: 10,
+    description: 'This is a sample description for the product.',
+    Key: {
+      categories: 'tshirt',
+      colors: ['bg-blue-500', 'bg-red-500', 'bg-green-500'],
+      dressStyle: 'casual',
+      price: [10, 100],
+      sizes: ['small', 'medium', 'large', 'x-large'],
     },
-    review: 5,
+    photos: [
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+    ],
+    review: [
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User1',
+        rating: 4,
+        review: 'Good product',
+      },
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User2',
+        rating: 3,
+        review: 'Average product',
+      },
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User3',
+        rating: 5,
+        review: 'Excellent product',
+      },
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User4',
+        rating: 5,
+        review: 'Highly recommend',
+      },
+    ],
   },
-
   {
-    image: '/images/hero.webp',
-    name: 'test',
-    price: {
-      afterPrice: 30,
-      discount: {
-        beforePrice: 54,
-        discountPercent: 15,
-      },
+    name: 'Test Product',
+    price: 20,
+    discount: 10,
+    description: 'This is a sample description for the product.',
+    Key: {
+      categories: 'tshirt',
+      colors: ['bg-blue-500', 'bg-red-500', 'bg-green-500'],
+      dressStyle: 'casual',
+      price: [10, 100],
+      sizes: ['small', 'medium', 'large', 'x-large'],
     },
-    review: 5,
+    photos: [
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+    ],
+    review: [
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User1',
+        rating: 4,
+        review: 'Good product',
+      },
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User2',
+        rating: 3,
+        review: 'Average product',
+      },
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User3',
+        rating: 5,
+        review: 'Excellent product',
+      },
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User4',
+        rating: 5,
+        review: 'Highly recommend',
+      },
+    ],
   },
-
   {
-    image: '/images/hero.webp',
-    name: 'test',
-    price: {
-      afterPrice: 30,
-      discount: {
-        beforePrice: 54,
-        discountPercent: 15,
-      },
+    name: 'Test Product',
+    price: 20,
+    discount: 10,
+    description: 'This is a sample description for the product.',
+    Key: {
+      categories: 'tshirt',
+      colors: ['bg-blue-500', 'bg-red-500', 'bg-green-500'],
+      dressStyle: 'casual',
+      price: [10, 100],
+      sizes: ['small', 'medium', 'large', 'x-large'],
     },
-    review: 5,
+    photos: [
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+      '/images/hero.webp',
+    ],
+    review: [
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User1',
+        rating: 4,
+        review: 'Good product',
+      },
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User2',
+        rating: 3,
+        review: 'Average product',
+      },
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User3',
+        rating: 5,
+        review: 'Excellent product',
+      },
+      {
+        CreatedAt: '2021-09-01',
+        name: 'User4',
+        rating: 5,
+        review: 'Highly recommend',
+      },
+    ],
   },
-  // ... other products
 ];
-
-interface Product {
-  image: string;
-  name: string;
-  price: {
-    afterPrice: number;
-    discount?: {
-      beforePrice: number;
-      discountPercent: number;
-    };
-  };
-  review: number;
-}
-
-const ProductCard = ({ product }: { product: Product }) => (
-  <Card className="w-[250px] border">
-    <CardHeader>
-      <CardTitle className="flex">
-        <Image
-          src={product.image}
-          alt={product.name}
-          width={150}
-          height={150}
-          className="mx-auto h-auto w-full rounded-2xl object-contain md:w-auto"
-        />
-      </CardTitle>
-    </CardHeader>
-    <CardContent>
-      <div className="text-lg font-bold capitalize">{product.name}</div>
-    </CardContent>
-    <CardFooter>
-      <div className="block">
-        <Stars value={product.review} withReview={true} />
-        <div className="flex items-center gap-2">
-          <div className="text-lg font-bold">${product.price.afterPrice}</div>
-          {product.price.discount && (
-            <>
-              <div className="font-bold text-slate-400 line-through">
-                ${product.price.discount.beforePrice}
-              </div>
-              <Badge className="" variant="discount">
-                {product.price.discount.discountPercent}%
-              </Badge>
-            </>
-          )}
-        </div>
-      </div>
-    </CardFooter>
-  </Card>
-);
-
-const SectionTitle = ({ title }: { title: string }) => (
-  <center>
-    <div className="text-3xl font-bold uppercase">{title}</div>
-  </center>
-);
 
 const Home = () => {
   const [products] = useState(PRODUCTS);
@@ -174,6 +249,7 @@ const Home = () => {
                 width={900}
                 height={1348}
                 className="mx-auto h-auto w-full md:h-[600px] md:w-auto"
+                priority={false}
               />
             </div>
           </div>

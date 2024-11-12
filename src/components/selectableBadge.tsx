@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 

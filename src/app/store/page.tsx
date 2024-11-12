@@ -2,7 +2,7 @@
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
-import Product from '@/components/product';
+import { ProductCard } from '@/components/product';
 import { SelectableBadge } from '@/components/selectableBadge';
 import { Filter } from '@/components/shared/icons';
 import {
@@ -29,16 +29,39 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { Slider } from '@/components/ui/slider';
-import { DefaultValues } from '@/types/type';
+import {
+  Categories,
+  Colors,
+  DressStyle,
+  PriceRange,
+  Sizes,
+} from '@/types/type';
+import Link from 'next/link';
 import { Key } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+interface DefaultValues {
+  categories: Categories['categories'][number][]; // multiple category options
+  price: PriceRange['price']; // price range as a tuple
+  colors: Colors['colors'][number][]; // multiple color options
+  sizes: Sizes['sizes'][number][]; // multiple size options
+  dressStyle: DressStyle['dressStyle'][number][]; // multiple dress style options
+}
 
 const defaultValues: DefaultValues = {
   price: [0, 500],
-  colors: [],
-  categories: 'tshirt',
-  sizes: [],
-  dressStyle: 'casual',
+  colors: [
+    'bg-green-500',
+    'bg-red-500',
+    'bg-yellow-500',
+    'bg-orange-500',
+    'bg-blue-500',
+    'bg-purple-500',
+    'bg-pink-500',
+    'bg-white border',
+  ],
+  categories: ['hoodie', 'jeans', 'shirt', 'short', 'tshirt'],
+  sizes: ['large', 'medium', 'small', 'x-large'],
+  dressStyle: ['casual', 'formal', 'gym', 'party'],
 };
 
 const useStoreForm = () => {
@@ -73,14 +96,18 @@ const FilterAccordion = ({
                       <Slider
                         range
                         value={field.value as number[]}
-                        onValueChange={(value: any) => field.onChange(value)}
+                        onVolumeChange={(
+                          event: React.ChangeEvent<HTMLInputElement>,
+                        ) => field.onChange(event)}
                         min={0}
                         max={500}
                         step={1}
                         className="mb-4 mt-2"
                       />
                     ) : (
-                      (defaultValues[key as keyof DefaultValues] as any).map(
+                      (
+                        defaultValues[key as keyof DefaultValues] as string[]
+                      ).map(
                         (
                           item: string | number | readonly string[],
                           idx: Key | null | undefined,
@@ -91,19 +118,28 @@ const FilterAccordion = ({
                               value={item}
                               checked={
                                 Array.isArray(field.value) &&
-                                field.value.includes(item as never)
+                                (field.value as string[]).includes(
+                                  item as string,
+                                )
                               }
                               onCheckedChange={(checked) => {
                                 if (checked) {
                                   field.onChange([
-                                    ...(field.value as any[]),
+                                    ...(field.value as string[]),
                                     item,
                                   ]);
                                 } else {
                                   field.onChange(
-                                    (field.value as any[]).filter(
-                                      (value: any) => value !== item,
-                                    ),
+                                    Array.isArray(field.value)
+                                      ? field.value.filter(
+                                          (
+                                            value:
+                                              | string
+                                              | number
+                                              | readonly string[],
+                                          ) => value !== item,
+                                        )
+                                      : [],
                                   );
                                 }
                               }}
@@ -128,7 +164,12 @@ const FilterAccordion = ({
                                   field.onChange(
                                     Array.isArray(field.value) &&
                                       field.value.filter(
-                                        (value: any) => value !== item,
+                                        (
+                                          value:
+                                            | string
+                                            | number
+                                            | readonly string[],
+                                        ) => value !== item,
                                       ),
                                   );
                                 }
@@ -192,14 +233,39 @@ const Store = () => {
             </div>
             <div className="grid grid-cols-2 gap-16 md:grid-cols-3">
               {[...Array(4)].map((_, index) => (
-                <Product
-                  key={index}
-                  photos={['/images/hero.webp']}
-                  name="Test"
-                  price={30}
-                  review={3}
-                  discount={0}
-                />
+                <Link href="/product" key={index}>
+                  <ProductCard
+                    key={index}
+                    product={{
+                      name: 'Hoodie',
+                      price: 200,
+                      review: [
+                        {
+                          rating: 5,
+                          review: 'Great product',
+                          CreatedAt: '',
+                          name: 'John Doe',
+                        },
+                        {
+                          rating: 4,
+                          review: 'Good product',
+                          CreatedAt: '',
+                          name: 'John Doe',
+                        },
+                      ],
+                      photos: ['/images/hero.webp'],
+                      description: 'Lorem ipsum dolor sit amet, consectetur.',
+                      Key: {
+                        categories: 'hoodie',
+                        price: [100, 200],
+                        colors: ['bg-green-500'],
+                        sizes: ['small'],
+                        dressStyle: 'casual',
+                      },
+                      discount: 10,
+                    }}
+                  />
+                </Link>
               ))}
             </div>
             <div className="mt-6 flex justify-between">

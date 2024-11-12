@@ -69,6 +69,6 @@ export interface Product {
   discount?: number;
   description?: string;
   Key?: DefaultValues; // Use DefaultValues interface for the Key property
-  review?: Review[] | number;
+  review?: Review[];
   photos: string[];
 }
